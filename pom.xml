@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ae.dtp.integration</groupId>
+    <artifactId>master-data-transformer</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.2.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--  <dependency>
+             <groupId>com.fasterxml.jackson.dataformat</groupId>
+             <artifactId>jackson-dataformat-xml</artifactId>
+             <version>2.10.1</version>
+         </dependency>   -->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <docker.image.prefix>registry.gitlab.com/anshadkm</docker.image.prefix>
+        <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
+        <java.version>1.8</java.version>
+        <spring-boot-dependencies.version>2.2.1.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-kubernetes.version>1.1.1.RELEASE</spring-cloud-kubernetes.version>
+        <lombok.version>1.16.20</lombok.version>
+        <chaos-monkey-spring-boot.version>2.0.2</chaos-monkey-spring-boot.version>
+        <jib-maven-plugin.version>1.8.0</jib-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <!--          <version>${jib.version}</version>   -->
+                <version>1.8.0</version>
+                <configuration>
+                    <to>
+                        <image>${docker.image.prefix}/${artifactId}</image>
+                    </to>
+                    <!--           <allowInsecureRegistries>true</allowInsecureRegistries>   -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <executions>
+                    <execution>
+                        <id>AirportMasterSchema</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>ae.dtp.integration.masterdata.schema</packageName>
+                            <sources>
+                                <source>src/main/resources/xsd/master_airport.xsd</source>
+                            </sources>
+                            <clearOutputDir>false</clearOutputDir>
+                            <enableIntrospection>true</enableIntrospection>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

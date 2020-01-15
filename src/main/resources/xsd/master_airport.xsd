@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MSG">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MSGSTREAM_OUT">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="INFOBJ_GENERIC">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="MESSAGETYPE" type="xs:string" />
+                    <xs:element name="MESSAGEORIGIN" type="xs:string" />
+                    <xs:element name="TIMEID" type="xs:string" />
+                    <xs:element name="TIMESTAMP" type="xs:unsignedLong" />
+                    <xs:element name="ACTIONTYPE" type="xs:string" />
+                    <xs:element name="URNO" type="xs:unsignedLong" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MASTER">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="STATIC_AIRPORT">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="AIRPORT">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="APC3" type="xs:string" />
+                                <xs:element name="APC4" type="xs:string" />
+                                <xs:element name="APFN" type="xs:string" />
+                                <xs:element name="APN2" type="xs:string" />
+                                <xs:element name="APN3" type="xs:string" />
+                                <xs:element name="APN4" type="xs:string" />
+                                <xs:element name="APSN" type="xs:string" />
+                                <xs:element name="APTT" type="xs:string" />
+                                <xs:element name="CDAT" type="xs:unsignedLong" />
+                                <xs:element name="ETOF" type="xs:string" />
+                                <xs:element name="HOME" type="xs:string" />
+                                <xs:element name="HOPO" type="xs:string" />
+                                <xs:element name="LAND" type="xs:string" />
+                                <xs:element name="LSTU" type="xs:unsignedLong" />
+                                <xs:element name="PRFL" type="xs:string" />
+                                <xs:element name="TDI1" type="xs:string" />
+                                <xs:element name="TDI2" type="xs:string" />
+                                <xs:element name="TICH" type="xs:string" />
+                                <xs:element name="VAFR" type="xs:unsignedLong" />
+                                <xs:element name="VATO" type="xs:unsignedLong" />
+                                <xs:element name="TDIS" type="xs:string" />
+                                <xs:element name="TDIW" type="xs:string" />
+                                <xs:element name="TZON" type="xs:string" />
+                                <xs:element name="UCIT" type="xs:unsignedShort" />
+                                <xs:element name="CRIF" type="xs:string" />
+                                <xs:element name="APCO" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
